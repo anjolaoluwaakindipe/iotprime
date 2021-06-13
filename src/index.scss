@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  font-family: Inter, monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+*{
+  margin: 0;
+  pad: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: local("Inter"), url(./fonts/Inter/Inter-VariableFont_slnt,wght.ttf), format("truetype");
+}

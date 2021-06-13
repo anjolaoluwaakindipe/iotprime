@@ -1,0 +1,15 @@
+.Loader__container{
+  display: flex;
+  width: 100;
+  min-height: 100vh;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+
+  .Loader__{
+    height: 4.5;
+    width: 4.5;
+
+  }
+}
+

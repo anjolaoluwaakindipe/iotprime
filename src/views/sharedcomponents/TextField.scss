@@ -1,0 +1,13 @@
+@import '../../scss/variables.scss';
+
+.TextField{
+  display: flex;
+  height: 3.4rem;
+  border-radius: 0.4rem;
+  border-width: 0.06rem;
+  border-style: solid;
+  border-color: $textColorLight;
+  padding: 0 0.5rem;
+  outline: none;
+  font-size: 16px;
+}

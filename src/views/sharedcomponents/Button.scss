@@ -1,0 +1,46 @@
+@import '../../scss/variables.scss';
+
+a{
+  text-decoration: none;
+}
+
+button{
+  border: 0;
+  padding: 0;
+}
+
+  
+  .Button{
+    height: 3.1rem;    
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+
+.Button_primary{
+  background-color: $buttonColor;
+  color: $backgroundColorLight;
+  transition: all 200ms ease;
+
+  &:hover, &:focus{
+    background-color: $backgroundColorLight;
+    color: $buttonColor;
+    border: 1px solid $buttonColor;
+  }
+
+
+}
+.Button__disabled{
+  background-color: grey;
+  color: #fff;
+  transition: all 200ms ease;
+  cursor: default;
+
+  &:hover, &:focus{
+    background-color: grey;
+    color: #fff;
+    border: 1px solid grey;
+  }
+}
+
