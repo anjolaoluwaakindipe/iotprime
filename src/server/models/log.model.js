@@ -12,6 +12,10 @@ const logSchema = mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'Projects',
   },
+  userID: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Users',
+  },
 });
 
 module.exports = mongoose.model('Logs', logSchema);

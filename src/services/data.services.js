@@ -1,5 +1,5 @@
 const axios = require('axios').default;
-const API_URL = 'http://localhost:7000/anj/data/';
+const API_URL = '/anj/data/';
 
 exports.getDataDay = async (token, projectID, dataField) => {
   return await axios

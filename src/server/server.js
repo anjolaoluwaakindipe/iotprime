@@ -18,11 +18,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ exposedHeaders: 'Auth-Token' }));
 
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, '/../../build')));
+
 // database connection
 activateMongoServer();
 
 // routes
 app.use('/anj', indexRouter);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../../build/index.html'));
+});
 
 // middleware for url not found error handling
 app.use((req, res) => {

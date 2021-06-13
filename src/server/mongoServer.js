@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
-
-let DB_URL;
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 
 const activateMongoServer = async () => {
-  if (process.env.NODE_ENV === 'development') {
-    DB_URL = process.env.DB_URL_DEVELOPMENT;
-  } else {
-    DB_URL = process.env.DB_URL_PRODDUCTION;
-  }
+  let DB_URL;
+  // if (process.env.NODE_ENV === 'development') {
+  //   DB_URL = process.env.DB_URL_DEVELOPMENT;
+  // } else {
+  DB_URL = process.env.DB_URL_PRODUCTION;
+  // }
   try {
     await mongoose.connect(
       DB_URL,

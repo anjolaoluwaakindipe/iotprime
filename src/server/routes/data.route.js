@@ -93,7 +93,11 @@ router.post('/:email/:projectAPI', async (req, res) => {
 
   // Sends a log to the user's account and response to their embedded device of the incorrect query keys that were not sent
   if (wrongQueryNames.length > 0) {
-    await new Log({ message: message1, projectID: userProject[0]._id }).save();
+    await new Log({
+      message: message1,
+      projectID: userProject[0]._id,
+      userID: existingUser._id,
+    }).save();
     return res.json({
       success: true,
       message: message1,
@@ -102,7 +106,11 @@ router.post('/:email/:projectAPI', async (req, res) => {
   }
 
   // Sends a log to the user's account and response to their embedded device that nothing wrong happened
-  await new Log({ message: message2, projectID: userProject[0]._id }).save();
+  await new Log({
+    message: message2,
+    projectID: userProject[0]._id,
+    userID: existingUser._id,
+  }).save();
   return res.json({
     success: true,
     message: message2,

@@ -11,6 +11,8 @@ const {
 // Models
 const Project = require('../models/project.model');
 const Users = require('../models/user.model');
+const Log = require('../models/log.model');
+const Data = require('../models/data.model');
 
 // Router
 const router = express.Router();
@@ -209,6 +211,13 @@ router.put('/:_id/updatePrivacy', [tokenVerificationMidd], async (req, res) => {
         .json({ success: true, message: 'Project has been updated!' });
     })
     .catch((err) => console.log(err));
+});
+
+// delet a project
+router.delete('/:_id', tokenVerificationMidd, async (req, res) => {
+  await Project.deleteOne({ _id: req.params._id });
+  await Data.deleteOne({ projectID: req.params._id });
+  await Log.deleteOne({ projectID: req.params._id });
 });
 
 module.exports = router;

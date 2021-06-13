@@ -1,5 +1,5 @@
 const axios = require('axios').default;
-const API_URL = 'http://localhost:7000/anj/search';
+const API_URL = '/anj/search';
 
 exports.searchData = async (searchData) => {
   return await axios

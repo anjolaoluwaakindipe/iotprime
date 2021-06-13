@@ -7,6 +7,9 @@ require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 
 // models
 const Users = require('../models/user.model');
+const Project = require('../models/project.model');
+const Data = require('../models/data.model');
+const Log = require('../models/log.model');
 
 // middleware
 const hashPasswordMidd = require('../middleware/hashPasswordMidd');
@@ -109,6 +112,14 @@ router.get('/usernamecheck/:username', async (req, res) => {
       .json({ success: false, message: 'Username already exists' });
   }
   res.status(200).json({ success: true, message: 'Username is available' });
+});
+
+// delete user
+router.delete('/:userID', tokenVerificationMidd, async (req, res) => {
+  await Users.deleteMany({ _id: req.params.userID });
+  await Project.deleteMany({ userID: req.params.userID });
+  await Data.deleteMany({ userID: req.params.userID });
+  await Log.deleteMany({ userID: req.params.userID });
 });
 
 module.exports = router;
