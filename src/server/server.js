@@ -10,7 +10,7 @@ const { activateMongoServer } = require('./mongoServer');
 
 // variables
 const app = express();
-const PORT = process.env.NODE_PORT || 5000;
+const PORT = process.env.PORT || process.env.NODE_PORT;
 const NODE_ENV = process.env.NODE_ENV;
 
 // middleware
