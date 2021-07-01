@@ -47,7 +47,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cd ./node_modules/admin-bro & npm link ../../node_modules/react & cd ../../ & react-scripts build ",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "devserver": "NODE_ENV=development nodemon src/server/server.js",
@@ -71,9 +71,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:7000",
-  "peerDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  }
+  "proxy": "http://localhost:7000"
 }
