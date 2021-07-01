@@ -53,6 +53,10 @@
     "devserver": "NODE_ENV=development nodemon src/server/server.js",
     "prodserver": "NODE_ENV=production node src/server/server.js"
   },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
