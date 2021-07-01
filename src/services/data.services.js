@@ -1,30 +1,48 @@
 const axios = require('axios').default;
 const API_URL = '/anj/data/';
 
-exports.getDataDay = async (token, projectID, dataField) => {
+const getDataDay = async (token, projectID, dataField) => {
   return await axios
-    .get(API_URL + `${projectID}/${dataField}/todaydata`, { headers: token })
+    .get(API_URL + `${projectID}/${dataField}/todaydata`, {
+      headers: {
+        'Auth-Token': token,
+      },
+    })
     .then((res) => res.data);
 };
 
-exports.getDataWeek = async (token, projectID, dataField) => {
+const getDataWeek = async (token, projectID, dataField) => {
   return await axios
-    .get(API_URL + `${projectID}/${dataField}/weekdata`, { headers: token })
+    .get(API_URL + `${projectID}/${dataField}/weekdata`, {
+      headers: {
+        'Auth-Token': token,
+      },
+    })
     .then((res) => res.data);
 };
 
-exports.getDataYear = async (token, projectID, dataField) => {
+const getDataYear = async (token, projectID, dataField) => {
   return await axios
-    .get(API_URL + `${projectID}/${dataField}/yeardata`, { headers: token })
+    .get(API_URL + `${projectID}/${dataField}/yeardata`, {
+      headers: {
+        'Auth-Token': token,
+      },
+    })
     .then((res) => res.data);
 };
 
-exports.getDataAnyDate = async (token, projectID, dataField, date) => {
+const getDataAnyDate = async (token, projectID, dataField, date) => {
   return await axios
     .post(
       API_URL + `${projectID}/${dataField}/anydate`,
       { date },
-      { headers: token }
+      {
+        headers: {
+          'Auth-Token': token,
+        },
+      }
     )
     .then((res) => res.data);
 };
+
+export { getDataAnyDate, getDataDay, getDataYear, getDataWeek };

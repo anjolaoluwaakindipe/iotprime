@@ -58,7 +58,7 @@ router.post(
     const user = await Users.findOne({ email: email });
     if (!user) {
       return res
-        .status(400)
+        .status(200)
         .json({ success: false, message: 'Email or Password is incorrect' });
     }
 

@@ -6,7 +6,7 @@ exports.loginValidationResult = (req, res, next) => {
   console.log(result);
   if (!result.isEmpty()) {
     const error = result.array()[0].msg;
-    return res.status(400).json({ success: false, error: error });
+    return res.json({ success: false, error: error });
   }
   next();
 };

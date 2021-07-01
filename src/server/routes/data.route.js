@@ -87,9 +87,13 @@ router.post('/:email/:projectAPI', async (req, res) => {
       wrongQueryNames.push(queryKeyNames[i]);
     }
   }
+  var io = req.app.get('socketio');
+  io.emit(existingProjects[0]._id);
 
   const message1 = `Not all data was sent successfully. Data for fields: ${wrongQueryNames.toString()} were not added because they were either mispelt or are not part of the fields of this project`;
   const message2 = 'All Data was sent successfully';
+
+  console.log(existingUser._id);
 
   // Sends a log to the user's account and response to their embedded device of the incorrect query keys that were not sent
   if (wrongQueryNames.length > 0) {
@@ -136,7 +140,7 @@ router.get(
 
     // checks if there's any data for that project (error handling)
     if (theDaysData.length === 0) {
-      res.json({
+      return res.json({
         success: false,
         message: 'There are no available data for today',
       });

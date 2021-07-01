@@ -1,5 +1,5 @@
 const axios = require('axios');
-const API_URL = '/anj/user/';
+const API_URL = 'http://localhost:7000/anj/user/';
 
 const login = async (email, password) => {
   return await axios
@@ -15,7 +15,7 @@ const login = async (email, password) => {
       return res.data;
     })
     .catch((err) => {
-      return err.message;
+      return err.msg;
     });
 };
 
@@ -49,10 +49,8 @@ const emailChecker = async (username) => {
 };
 
 const logout = async () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user');
+  await localStorage.removeItem('token');
+  await localStorage.removeItem('user');
 };
 
-const userServices = { login, logout, emailChecker, userData, register };
-
-export default userServices;
+export { login, logout, emailChecker, userData, register };

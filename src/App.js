@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 // http services
-import userServices from './services/user.services';
+import { logout, userData } from './services/user.services';
 
 //custom imports
 import {
@@ -15,6 +15,7 @@ import {
   Register,
   ErrorPage,
   Home,
+  Projects,
 } from './views';
 import MainLayout from './views/layouts/MainLayout';
 import { loginUserFailure, loginUserSuccess } from './redux/Auth/authActions';
@@ -29,14 +30,14 @@ function App() {
   useEffect(() => {
     const loginUser = async () => {
       if (tokenStorage) {
-        const userData = await userServices
-          .userData(tokenStorage.token)
-          .then((data) => data);
-        if (!userData.success) {
+        const gottenUserData = await userData(tokenStorage.token).then(
+          (data) => data
+        );
+        if (!gottenUserData.success) {
           dispatch(loginUserFailure());
-          await userServices.logout();
+          await logout();
         }
-        dispatch(loginUserSuccess(userData.data));
+        dispatch(loginUserSuccess(gottenUserData.data));
       }
     };
     loginUser();
@@ -48,8 +49,9 @@ function App() {
       <Route path='/login' component={Login} />
       <Route path='/register' component={Register} />
       <MainLayout path='/dashboard' component={Dashboard} />
-      <MainLayout path='/project/:id/graph/:id' component={Graph} />
-      <MainLayout path='/project/:id' component={Project} />
+      <MainLayout path='/project/:projectID/graph/:dataID' component={Graph} />
+      <MainLayout path='/project' component={Projects} exact />
+      <MainLayout path='/project/:projectID' component={Project} exact />
       <Route component={ErrorPage} />
     </Switch>
   );

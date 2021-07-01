@@ -1,12 +1,15 @@
 import React from 'react';
 
+// react icans
+import { GiHamburgerMenu } from 'react-icons/gi';
+
 // css imports
 import './Navbar.scss';
 
-export default function Navbar() {
+export default function Navbar({ sideBarHandlerTrue }) {
   return (
     <div className='Navbar_container'>
-      <h1>I am a Navbar</h1>
+      <GiHamburgerMenu className='Navbar__menu' onClick={sideBarHandlerTrue} />
     </div>
   );
 }

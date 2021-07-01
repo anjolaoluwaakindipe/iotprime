@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+// css
+import './Project.scss';
+
 // redux actions
 import { setCurrentProject } from '../../redux/Project/projectaction';
 
@@ -10,10 +13,15 @@ import { getAProject } from '../../services/project.services';
 
 const Project = () => {
   // variables
-  const { id } = useParams();
+  const { projectID } = useParams();
   const dispatch = useDispatch();
   const { currentProject } = useSelector((state) => state.project);
   const history = useHistory();
+
+  const tokenStorage = JSON.parse(localStorage.getItem('token'));
+  if (!tokenStorage) {
+    history.push('/login');
+  }
 
   // functions
   const fieldClickHandler = (projectID, fieldID) => {
@@ -23,28 +31,22 @@ const Project = () => {
   // useEffect
   useEffect(() => {
     const startUp = async () => {
-      const tokenStorage = JSON.parse(localStorage.getItem('token'));
-      if (!tokenStorage) {
-        return history.push('/login');
-      }
       const currentProjectData = await getAProject(
-        id,
+        projectID,
         tokenStorage.token
       ).catch((err) => console.log(err.message));
-      if (!currentProjectData.data) {
-        return history.push('/login');
-      }
       dispatch(setCurrentProject(currentProjectData.data));
+      console.log(currentProjectData);
     };
     startUp();
-  }, [dispatch, id, history]);
+  }, []);
 
   return (
-    <div>
+    <div className='Project__container Dashboard-component'>
       <h1>Welcome to Project route {currentProject.projectName}</h1>
       {currentProject.projectFields.map((field) => (
         <div
-          onClick={() => fieldClickHandler(currentProject._id, field._id)}
+          onClick={() => fieldClickHandler(currentProject._id, field.fieldName)}
           key={field._id}
         >
           <h4>{field.fieldName}</h4>

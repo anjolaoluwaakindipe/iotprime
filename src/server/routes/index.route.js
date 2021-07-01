@@ -11,5 +11,6 @@ router.use('/project', require('./project.route'));
 router.use('/user', require('./user.route'));
 router.use('/search', require('./search.route'));
 router.use('/log', require('./log.route'));
+router.use('/export', require('./export.route'));
 
 module.exports = router;

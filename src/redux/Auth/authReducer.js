@@ -7,9 +7,10 @@ import {
 const userStorage = JSON.parse(localStorage.getItem('user'));
 const tokenStorage = JSON.parse(localStorage.getItem('token'));
 
-const initialLoggedState = userStorage
-  ? { isLogged: true, user: userStorage, token: tokenStorage.token }
-  : { isLogged: false, user: null, token: null };
+const initialLoggedState =
+  userStorage || tokenStorage
+    ? { isLogged: true, user: userStorage, token: tokenStorage?.token }
+    : { isLogged: false, user: null, token: null };
 
 export default function authReducer(state = initialLoggedState, action) {
   switch (action.type) {

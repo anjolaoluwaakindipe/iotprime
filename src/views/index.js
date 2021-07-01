@@ -5,5 +5,15 @@ import Project from './Project';
 import Register from './Register';
 import ErrorPage from './ErrorPage';
 import Home from './Home';
+import Projects from './Projects';
 
-export { Graph, Dashboard, Login, Project, Register, ErrorPage, Home };
+export {
+  Graph,
+  Dashboard,
+  Login,
+  Project,
+  Register,
+  ErrorPage,
+  Home,
+  Projects,
+};

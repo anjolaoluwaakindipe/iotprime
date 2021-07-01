@@ -1,0 +1,11 @@
+.Graph__container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 100%;
+  min-height: 100vh;
+  .Graph{
+    height: 500px;
+    padding: 1.2rem;
+  }
+}

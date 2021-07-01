@@ -38,7 +38,7 @@ router.get('/', [tokenVerificationMidd], async (req, res) => {
       _id,
       projectName,
       projectAPI,
-      projectTimeCreated: projectTimeCreated.toTimeString(),
+      projectTimeCreated: new Date(projectTimeCreated).toLocaleTimeString(),
       projectDateCreated: projectTimeCreated.toDateString(),
       projectDescription,
     })

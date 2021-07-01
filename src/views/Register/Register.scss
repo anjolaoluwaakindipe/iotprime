@@ -1,0 +1,51 @@
+.Register__container{
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 0;
+  border: 0 0;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  // background:  url("/images/login_splash.svg");
+  background:  url(https://source.unsplash.com/featured/?iot);
+  background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+  .Register__form-container{
+    background-color: #fff;
+    display: flex;
+    min-height: 34rem; 
+    align-items: center;
+    border-radius: 1.2rem;
+    -webkit-box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.5);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.5);  /* Firefox 3.5 - 3.6 */
+    box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.5);
+
+    .Register__form-title{
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .Register__form-button{
+      margin-top: 2.4rem;
+      height: 3rem;
+    }
+
+    .Register__form-link{
+      margin-top: 1.3rem;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Register__container{
+    .Register__form-container{
+      border-radius: 0px;
+      -webkit-box-shadow: 0px;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+      -moz-box-shadow: 0px;  /* Firefox 3.5 - 3.6 */
+      box-shadow: 0px;
+    }
+  }
+}

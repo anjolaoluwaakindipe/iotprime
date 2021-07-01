@@ -1,0 +1,76 @@
+@import '../../scss/variables.scss';
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.Projects__container{
+  .Projects__title{
+    font-weight: 400;
+  }
+  
+  .Projects__content{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+
+    
+    .Projects__loading-div{
+      cursor: pointer;
+      margin: 1.2rem;
+      height: 269px;
+      width: 255px;
+      background: #eee;
+      background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+      animation: 1.5s shine linear infinite;
+      background-size: 200% 100%;
+      
+    }
+
+    
+
+    .Projects__addnewproject-button{
+      cursor: pointer;
+      margin: 1.2rem;
+      height: 269px;
+      width: 255px;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: space-evenly;
+      background-color: #E5E5E5;
+
+      .Projects__add-icon{
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .Projects__container{
+    padding: 1rem;
+
+    .Projects__title{
+      text-align: center;
+    }
+
+    .Projects__content{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

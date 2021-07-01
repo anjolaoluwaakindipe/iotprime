@@ -1,0 +1,23 @@
+.MainLayout__container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  .nav-component__container{
+    width: 100%;
+    // display: flex;
+    // flex-direction: column;
+    overflow-y: scroll;
+    
+
+
+    .layout-conponent{
+      display: flex;
+    flex-direction: column;
+    margin: 52px 52px;
+    }
+  }
+
+}

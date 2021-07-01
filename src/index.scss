@@ -12,11 +12,24 @@ code {
 
 *{
   margin: 0;
-  pad: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 @font-face {
   font-family: 'Inter';
   src: local("Inter"), url(./fonts/Inter/Inter-VariableFont_slnt,wght.ttf), format("truetype");
+}
+
+.Dashboard-component{
+  display: flex;
+    flex-direction: column;
+    margin: 52px 52px;
+}
+
+@media screen and (max-width:900px) {
+  .Dashboard-component{
+    margin: 10px 10px;
+    
+  }
 }

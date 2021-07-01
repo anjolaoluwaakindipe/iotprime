@@ -17,6 +17,7 @@ import loader from '../../images/loader.gif';
 
 // custom service imports
 import { getAllProjects } from '../../services/project.services';
+import Typography from '@material-ui/core/Typography';
 
 const Dashboard = () => {
   const isLogged = useSelector((state) => state.auth.isLogged);
@@ -44,12 +45,13 @@ const Dashboard = () => {
         if (allProjects === undefined) {
           return <Redirect to='/login' />;
         }
+
         dispatch(setAllProjects(allProjects.data));
         dispatch(setLoadingFalse());
       }
     };
     startup();
-  }, [dispatch, history]);
+  }, []);
 
   if (!isLogged) {
     return <Redirect to='/login' />;
@@ -63,14 +65,21 @@ const Dashboard = () => {
     );
   }
   return (
-    <div className=''>
-      <h1>{userData.username}</h1>
-      {allProjects.map((project) => (
-        <div onClick={() => projectClickHandler(project._id)} key={project._id}>
-          <h4>{project.projectName}</h4>
-          <p>{project.projectDescription}</p>
-        </div>
-      ))}
+    <div className='Dashboard__container '>
+      <div className='Dashboard__content-container Dashboard-component'>
+        <Typography variant='h4' className='Dashboard__header'>
+          Project
+        </Typography>
+        {allProjects.map((project) => (
+          <div
+            onClick={() => projectClickHandler(project._id)}
+            key={project._id}
+          >
+            <h4>{project.projectName}</h4>
+            <p>{project.projectDescription}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
