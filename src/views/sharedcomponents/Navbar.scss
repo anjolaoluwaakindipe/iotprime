@@ -1,32 +1,45 @@
 @import '../../scss/variables.scss';
 
-.Navbar_container{
-  display: none;
-  
-  height: 100px;
-  width: 100%;
-  
-  background-color: #fff;
+.Navbar_container {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 1;
+  // border-bottom: black solid 1px;
+  background-color: #163185;
+  color: #eee !important;
 
-  .Navbar__menu{
-    display: none
-  }
-
-}
-
-
-
-@media screen and (max-width:900px) {
-  .Navbar_container{
+  .Navbar__rightside {
     display: flex;
     flex-direction: row;
-    padding: 2rem;
-    justify-content: flex-start;
-    align-items: center;
 
-    .Navbar__menu{
-      display: inline
+    .Navbar__user-account {
+      display: flex;
+      align-items: center;
+
+      .Navbar__avatar {
+        margin-right: 5px;
+      }
     }
   }
-  
+
+  .Navbar__menu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .Navbar_container {
+    justify-content: space-between;
+    .Navbar__menu {
+      display: inline;
+    }
+    .Navbar__rightside {
+      font-size: 10px;
+    }
+  }
 }

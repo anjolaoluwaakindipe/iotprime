@@ -38,6 +38,8 @@ router.get('/csv/:projectID', tokenVerificationMidd, async (req, res) => {
     userID: req.userID._id,
   });
 
+  console.log(allData);
+
   if (allData.length === 0) {
     return res.json({ success: false, message: 'No data available' });
   }

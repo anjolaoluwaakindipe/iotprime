@@ -1,13 +1,18 @@
 @import '../../scss/variables.scss';
 
-.SideBar__container{
-  a {text-decoration: none; color: $textColorDark; font-weight: 700; font-size: medium;}
+.SideBar__container {
+  a {
+    text-decoration: none;
+    color: $textColorDark;
+    font-weight: 700;
+    font-size: medium;
+  }
   background-color: $backgroundColorLight;
-  -webkit-box-shadow: 0.2px 0px 10px 6px rgba(0,0,0,0.5);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-    -moz-box-shadow: 0.2px 0px 10px 6px rgba(0,0,0,0.5);  /* Firefox 3.5 - 3.6 */
-    box-shadow: 0.2px 0px 10px 6px rgba(0,0,0,0.5);
-    z-index: 1;
-  
+  -webkit-box-shadow: 0.2px 0px 10px 1px rgba(0, 0, 0, 0.5); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0.2px 0px 10px 1px rgba(0, 0, 0, 0.5); /* Firefox 3.5 - 3.6 */
+  box-shadow: 0.2px 0px 10px 1px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+
   width: 15rem;
   min-height: 100vh;
 
@@ -15,76 +20,77 @@
   flex-direction: column;
   justify-content: space-between;
 
-  .Cancel__Button{
-    display: none
+  .Cancel__Button {
+    display: none;
   }
 
-  .SideBar__tab-container{
+  .Sidebar__logo {
+    margin-top: 3rem;
+    width: 70%;
+    height: 4rem;
+    padding-left: 1.5rem;
+  }
+
+  .SideBar__tab-container {
     width: 100%;
-    margin-top: 116px;
+
     background: transparent;
-    
-    .SideBar__tab{
+
+    .SideBar__tab {
       flex-direction: row;
-      
+
       display: flex;
       padding-left: 1.5rem;
       justify-content: flex-start;
       align-items: center;
       display: flex;
       height: 64px;
-      
-      cursor: pointer;
 
-      
+      cursor: pointer;
     }
 
-    :hover{
+    :hover {
       background: #fff;
       transition: all 0.5s ease;
     }
   }
 
-  .Sidebar__Logout-container{
+  .Sidebar__Logout-container {
     height: 64px;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding-left: 1.5rem;
-    color: $textColorDark; 
-    font-weight: 700; 
+    color: $textColorDark;
+    font-weight: 700;
     font-size: medium;
     cursor: pointer;
-    
   }
 
-  .Sidebar__Logout-container:hover{
+  .Sidebar__Logout-container:hover {
     background: #fff;
     transition: all 0.5s ease;
-    
-  
   }
 
-  .SideBar__icons{
+  .SideBar__icons {
     stroke-width: 0.7px;
     margin-right: 1rem;
   }
 
-  .Selected{
+  .Selected {
     background-color: #fff;
   }
 }
 
-
-@media screen and (max-width:900px) {
-  .SideBar__container{
+@media screen and (max-width: 900px) {
+  .SideBar__container {
     position: absolute;
     top: 0;
     left: 0;
     transform: translateX(-17rem);
     transition: all 0.5s ease-in-out;
 
-    .Cancel__Button{
+    .Cancel__Button {
       display: block;
       position: absolute;
       top: 0;
@@ -93,7 +99,7 @@
     }
   }
 
-  .ShowSideBar{
+  .ShowSideBar {
     transform: translateX(0);
     transition: transform 0.5s ease-in-out;
   }

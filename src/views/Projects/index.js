@@ -29,12 +29,15 @@ export default function Projects() {
   const tokenStorage = JSON.parse(localStorage.getItem('token'));
   const dispatch = useDispatch();
 
-  const downloadcsvClick = async (projectID) => {
+  const downloadcsvClick = async (projectID, projectName) => {
     if (tokenStorage) {
-      const csv = await downloadcsv(tokenStorage.token, projectID);
-      if (csv) {
-        download(csv);
-      }
+      await downloadcsv(tokenStorage.token, projectID).then((res) => {
+        if (res.data.success === false) {
+          return window.alert(res.data.message);
+        }
+
+        download(res.data, projectName + '.csv');
+      });
     }
   };
 
@@ -64,7 +67,7 @@ export default function Projects() {
       <Typography className='Projects__title' variant='h2'>
         Projects
       </Typography>
-      {allProjects.length === 0 ? (
+      {!allProjects ? (
         <div className='Projects__content'>
           <div className='Projects__loading-div'></div>
           <div className='Projects__loading-div'></div>
@@ -83,7 +86,7 @@ export default function Projects() {
               timeCreated={project.projectTimeCreated}
               dateCreated={project.projectDateCreated}
               onClick={() => {
-                downloadcsvClick(project._id);
+                downloadcsvClick(project._id, project.projectName);
               }}
             />
           ))}

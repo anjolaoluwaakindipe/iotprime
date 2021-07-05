@@ -1,5 +1,5 @@
 const axios = require('axios');
-const API_URL = 'http://localhost:7000/anj/user/';
+const API_URL = '/anj/user/';
 
 const login = async (email, password) => {
   return await axios

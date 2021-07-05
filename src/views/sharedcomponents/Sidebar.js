@@ -19,6 +19,9 @@ import { VscGraph } from 'react-icons/vsc';
 import { GoReport } from 'react-icons/go';
 import { CgLogOut } from 'react-icons/cg';
 
+// logo
+import { ReactComponent as Logo } from '../../images/justlogowithcompanyname.svg';
+
 export default function Sidebar({ showSideBar, sideBarHandlerFalse }) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -40,6 +43,7 @@ export default function Sidebar({ showSideBar, sideBarHandlerFalse }) {
         className='Cancel__Button SideBar__icons'
         onClick={sideBarHandlerFalse}
       />
+      <Logo className='Sidebar__logo' />
       <ul className='SideBar__tab-container'>
         <Link to='/dashboard' onClick={sideBarHandlerFalse}>
           <li
