@@ -6,19 +6,18 @@
   }
 }
 
-.Projects__container{
-  .Projects__title{
+.Projects__container {
+  .Projects__title {
     font-weight: 400;
   }
-  
-  .Projects__content{
+
+  .Projects__content {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
 
-    
-    .Projects__loading-div{
+    .Projects__loading-div {
       cursor: pointer;
       margin: 1.2rem;
       height: 269px;
@@ -27,12 +26,9 @@
       background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
       animation: 1.5s shine linear infinite;
       background-size: 200% 100%;
-      
     }
 
-    
-
-    .Projects__addnewproject-button{
+    .Projects__addnewproject-button {
       cursor: pointer;
       margin: 1.2rem;
       height: 269px;
@@ -43,15 +39,14 @@
       align-items: center;
       text-align: center;
       justify-content: space-evenly;
-      background-color: #E5E5E5;
+      background-color: #e5e5e5;
 
-      .Projects__add-icon{
+      .Projects__add-icon {
         font-size: 30px;
       }
     }
   }
 }
-
 
 @keyframes shine {
   to {
@@ -60,14 +55,14 @@
 }
 
 @media screen and (max-width: 900px) {
-  .Projects__container{
+  .Projects__container {
     padding: 1rem;
 
-    .Projects__title{
+    .Projects__title {
       text-align: center;
     }
 
-    .Projects__content{
+    .Projects__content {
       display: flex;
       justify-content: center;
       align-items: center;

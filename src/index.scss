@@ -1,8 +1,9 @@
 body {
   margin: 0;
-  font-family: Inter, monospace;
+  font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(234, 233, 233);
 }
 
 code {
@@ -10,26 +11,20 @@ code {
     monospace;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-@font-face {
-  font-family: 'Inter';
-  src: local("Inter"), url(./fonts/Inter/Inter-VariableFont_slnt,wght.ttf), format("truetype");
-}
-
-.Dashboard-component{
+.Dashboard-component {
   display: flex;
-    flex-direction: column;
-    margin: 52px 52px;
+  flex-direction: column;
+  margin: 52px 52px;
 }
 
-@media screen and (max-width:900px) {
-  .Dashboard-component{
+@media screen and (max-width: 900px) {
+  .Dashboard-component {
     margin: 10px 10px;
-    
   }
 }

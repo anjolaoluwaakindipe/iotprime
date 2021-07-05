@@ -49,7 +49,7 @@ export default function Navbar({ sideBarHandlerTrue }) {
             className='Navbar__user-account'
           >
             <FaUserCircle className='Navbar__avatar' />
-            {user.email}
+            {user?.email}
           </Typography>
         ) : (
           ''

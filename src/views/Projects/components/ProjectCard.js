@@ -57,6 +57,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    marginLeft: '8px',
   },
 
   csvIcon: {

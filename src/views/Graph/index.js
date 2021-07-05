@@ -108,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
 const Graph = () => {
   const { projectID, dataID } = useParams();
   const [data, setData] = useState([]);
-  const [dataDate, setDataDate] = useState('year');
+  const [dataDate, setDataDate] = useState('today');
   const isLogged = useSelector((state) => state.auth.isLogged);
   const history = useHistory();
   const tokenStorage = JSON.parse(localStorage.getItem('token'));
@@ -134,8 +134,9 @@ const Graph = () => {
             y: data.dataValue,
           }));
           console.log(chartFormatData);
-          setData(chartFormatData);
+          return setData(chartFormatData);
         }
+        setData([]);
       }
       if (dataDate === 'year') {
         const resData = await getDataYear(
@@ -150,8 +151,10 @@ const Graph = () => {
             y: data.dataValue,
           }));
           console.log(chartFormatData);
-          setData(chartFormatData);
+          return setData(chartFormatData);
         }
+
+        setData([]);
       }
       if (dataDate === 'week') {
         const resData = await getDataWeek(
@@ -166,8 +169,9 @@ const Graph = () => {
             y: data.dataValue,
           }));
           console.log(chartFormatData);
-          setData(chartFormatData);
+          return setData(chartFormatData);
         }
+        setData([]);
       }
     };
     startup();
@@ -182,7 +186,7 @@ const Graph = () => {
     //   await startup();
     // }, 5000);
     // return () => clearInterval(interval);
-  }, []);
+  }, [dataDate]);
 
   return (
     <div className='Graph__container'>
