@@ -17,7 +17,7 @@ const Log = require('./models/log.model');
 
 // file imports
 const indexRouter = require('./routes/index.route');
-const { activateMongoServer } = require('./mongoServer');
+const activateMongoServer = require('./mongoServer');
 
 // variables
 const app = express();
@@ -105,11 +105,11 @@ app.set('socketio', io);
 // start database connection
 activateMongoServer();
 
-// Serve the static files from the React app
-app.use(express.static(path.join(__dirname, '/../../build')));
-
 // routes
 app.use('/anj', indexRouter);
+
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, '/../../build')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/../../build/index.html'));

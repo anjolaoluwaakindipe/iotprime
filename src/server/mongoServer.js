@@ -6,7 +6,8 @@ const activateMongoServer = async () => {
   let DB_URL;
   if (process.env.NODE_ENV === 'development') {
     DB_URL = process.env.DB_URL_DEVELOPMENT;
-  } else {
+  }
+  if (process.env.NODE_ENV === 'production') {
     DB_URL = process.env.DB_URL_PRODUCTION;
   }
   try {
@@ -26,6 +27,4 @@ const activateMongoServer = async () => {
   });
 };
 
-module.exports = {
-  activateMongoServer,
-};
+module.exports = activateMongoServer;
