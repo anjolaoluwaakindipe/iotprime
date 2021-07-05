@@ -1,1 +1,1 @@
-web: cd ./node_modules/admin-bro && npm link ../../node_modules/react && cd ../../ &&  node src/server/server.js
+web:  node src/server/server.js
