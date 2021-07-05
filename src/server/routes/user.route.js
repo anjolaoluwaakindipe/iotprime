@@ -74,12 +74,10 @@ router.post(
     const token = jwt.sign({ _id: user._id }, TOKEN_SECRET, {});
 
     // response
-    res
+    return res
       .header('Auth-Token', token)
       .status(200)
       .json({ success: true, message: 'Login succesful!' });
-
-    res.end();
   }
 );
 
@@ -111,7 +109,9 @@ router.get('/usernamecheck/:username', async (req, res) => {
       .status(401)
       .json({ success: false, message: 'Username already exists' });
   }
-  res.status(200).json({ success: true, message: 'Username is available' });
+  return res
+    .status(200)
+    .json({ success: true, message: 'Username is available' });
 });
 
 // delete user
@@ -120,6 +120,7 @@ router.delete('/:userID', tokenVerificationMidd, async (req, res) => {
   await Project.deleteMany({ userID: req.params.userID });
   await Data.deleteMany({ userID: req.params.userID });
   await Log.deleteMany({ userID: req.params.userID });
+  return;
 });
 
 module.exports = router;

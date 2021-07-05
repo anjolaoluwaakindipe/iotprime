@@ -17,20 +17,20 @@ exports.userRegisterController = async (req, res) => {
     // save new user
     await newUser
       .save()
-      .then(() => {
+      .then(() =>
         res.json({
           success: true,
           message: 'Your account has been created',
-        });
-      })
-      .catch((err) => {
+        })
+      )
+      .catch((err) =>
         res.status(201).json({
           success: false,
           message: err,
-        });
-      });
+        })
+      );
   } catch (err) {
-    res.json({
+    return res.json({
       message: err,
     });
   }
