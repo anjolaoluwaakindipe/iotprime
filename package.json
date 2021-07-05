@@ -47,7 +47,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cd ./node_modules/admin-bro && npm link ../../node_modules/react && cd ../../ && react-scripts build ",
+    "build": "cd ./node_modules/admin-bro && npm link ../../node_modules/react && react-scripts build ",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "devserver": "NODE_ENV=development nodemon src/server/server.js",
