@@ -91,16 +91,11 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
   cookiePassword: 'some-secret-password-used-to-secure-cookie',
 });
 
-// http and socket.io handlers
-const server = require('http').createServer(app);
-const io = require('socket.io')(server, { cors: { origin: '*' } });
-
 // middleware
 app.use(adminBro.options.rootPath, router);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ exposedHeaders: 'Auth-Token' }));
-app.set('socketio', io);
 
 // start database connection
 activateMongoServer();
@@ -119,6 +114,11 @@ app.get('*', (req, res) => {
 app.use((req, res) => {
   res.status(404).json({ message: 'URL not found' });
 });
+
+// http and socket.io handlers
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, { cors: { origin: '*' } });
+app.set('socketio', io);
 
 io.on('connection', (socket) => {
   console.log('User connected:' + socket.id);
