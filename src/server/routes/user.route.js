@@ -55,7 +55,9 @@ router.post(
     const { email, password } = req.body;
 
     // email validation
-    const user = await Users.findOne({ email: email });
+    const user = await Users.findOne({ email: email }).catch((err) =>
+      console.log(err)
+    );
     if (!user) {
       return res
         .status(200)
@@ -84,7 +86,9 @@ router.post(
 // get info about user
 router.get('/home', tokenVerificationMidd, async (req, res) => {
   // user id validation from middleware
-  const user = await Users.findOne({ _id: req.userID._id });
+  const user = await Users.findOne({ _id: req.userID._id }).catch((err) =>
+    console.log(err)
+  );
 
   // successful data response
   res.status(200).json({ success: true, data: user });
