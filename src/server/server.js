@@ -17,7 +17,7 @@ const Log = require('./models/log.model');
 
 // file imports
 const indexRouter = require('./routes/index.route');
-const activateMongoServer = require('./mongoServer');
+const { activateMongoServer } = require('./mongoServer');
 
 // variables
 const app = express();
