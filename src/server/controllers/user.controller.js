@@ -6,7 +6,7 @@ exports.userRegisterController = async (req, res) => {
 
   try {
     // create new user
-    const newUser = new Users({
+    const newUser = await new Users({
       username,
       email,
       password,

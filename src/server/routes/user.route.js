@@ -71,7 +71,7 @@ router.post(
       });
 
     // Create and send token
-    const token = jwt.sign({ _id: user._id }, TOKEN_SECRET, {});
+    const token = await jwt.sign({ _id: user._id }, TOKEN_SECRET, {});
 
     // response
     return res
