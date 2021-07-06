@@ -102,14 +102,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ exposedHeaders: 'Auth-Token' }));
 app.set('socketio', io);
 
-// Serve the static files from the React app
-app.use(express.static(path.join(__dirname, '/../../build')));
-
 // start database connection
 activateMongoServer();
 
 // routes
 app.use('/anj', indexRouter);
+
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, '/../../build')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/../../build/index.html'));
