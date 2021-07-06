@@ -11,7 +11,7 @@ const activateMongoServer = async () => {
     DB_URL = process.env.DB_URL_PRODUCTION;
   }
 
-  await mongoose.connect(
+  mongoose.connect(
     DB_URL,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => {
@@ -19,7 +19,7 @@ const activateMongoServer = async () => {
     }
   );
 
-  await mongoose.connection.on('error', (err) => {
+  mongoose.connection.on('error', (err) => {
     console.log(err);
   });
 };
