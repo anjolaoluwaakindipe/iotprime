@@ -215,9 +215,20 @@ router.put('/:_id/updatePrivacy', [tokenVerificationMidd], async (req, res) => {
 
 // delet a project
 router.delete('/:_id', tokenVerificationMidd, async (req, res) => {
-  await Project.deleteOne({ _id: req.params._id });
-  await Data.deleteOne({ projectID: req.params._id });
-  await Log.deleteOne({ projectID: req.params._id });
+  await Project.deleteOne({ _id: req.params._id }).catch((err) =>
+    console.log(err)
+  );
+  await Data.deleteOne({ projectID: req.params._id }).catch((err) =>
+    console.log(err)
+  );
+  await Log.deleteOne({ projectID: req.params._id }).catch((err) =>
+    console.log(err)
+  );
+  return res.json({
+    success: true,
+    message:
+      'Your has been successfully deleted Project and its data has been deleted',
+  });
 });
 
 module.exports = router;

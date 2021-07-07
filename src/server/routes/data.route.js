@@ -16,8 +16,23 @@ router.post('/:email/:projectAPI', async (req, res) => {
   // get user from user email
   const existingUser = await User.findOne({ email: req.params.email });
 
+  // get user project from project API
+  const existingProjects = await Project.find({
+    projectAPI: req.params.projectAPI,
+  });
+
+  // check if user owns that project
+  const userProject = existingProjects.filter((project) => {
+    return project.userID.toString === existingUser._id.toString;
+  });
+
   // check if user email exist
   if (!existingUser) {
+    await new Log({
+      message: 'Enter a valid email in your parameters',
+      projectID: userProject[0]._id,
+      userID: existingUser._id,
+    }).save();
     return res.status(401).json({
       success: false,
       message: 'Enter a valid email in your parameters',
@@ -25,13 +40,13 @@ router.post('/:email/:projectAPI', async (req, res) => {
     });
   }
 
-  // get user project from project API
-  const existingProjects = await Project.find({
-    projectAPI: req.params.projectAPI,
-  });
-
   // check if project exists
   if (!existingProjects) {
+    await new Log({
+      message: 'Enter a valid project API in your parameters',
+      projectID: userProject[0]._id,
+      userID: existingUser._id,
+    }).save();
     return res.status(401).json({
       success: false,
       message: 'Enter a valid project API in your parameters',
@@ -39,12 +54,12 @@ router.post('/:email/:projectAPI', async (req, res) => {
     });
   }
 
-  // check if user owns that project
-  const userProject = existingProjects.filter((project) => {
-    return project.userID.toString === existingUser._id.toString;
-  });
-
   if (userProject.length === 0) {
+    await new Log({
+      message: 'Project API does not match user',
+      projectID: userProject[0]._id,
+      userID: existingUser._id,
+    }).save();
     return res.status(401).json({
       success: false,
       message: 'Project API does not match user',
@@ -60,6 +75,11 @@ router.post('/:email/:projectAPI', async (req, res) => {
   // get query keys
   let queryKeyNames = Object.keys(req.query);
   if (queryKeyNames.length === 0) {
+    await new Log({
+      message: 'Please input queries to send to your project',
+      projectID: userProject[0]._id,
+      userID: existingUser._id,
+    }).save();
     return res.json({
       success: false,
       message: 'Please input queries to send to your project',
@@ -73,9 +93,15 @@ router.post('/:email/:projectAPI', async (req, res) => {
   // sends correct query keys and stores incorrect ones
   for (let i = 0; i < queryKeyNames.length; i++) {
     if (projectFieldNames.includes(queryKeyNames[i])) {
+      let parameterValueInNumber = req.query[queryKeyNames[i]];
+
+      if (typeof parameterValueInNumber === 'string') {
+        parameterValueInNumber = parseFloat(parameterValueInNumber);
+      }
+
       const newDataEntry = new Data({
         dataField: queryKeyNames[i],
-        dataValue: req.query[queryKeyNames[i]],
+        dataValue: parameterValueInNumber,
         projectID: userProject[0]._id,
         userID: existingUser._id,
       });
