@@ -93,15 +93,9 @@ router.post('/:email/:projectAPI', async (req, res) => {
   // sends correct query keys and stores incorrect ones
   for (let i = 0; i < queryKeyNames.length; i++) {
     if (projectFieldNames.includes(queryKeyNames[i])) {
-      let parameterValueInNumber = req.query[queryKeyNames[i]];
-
-      if (typeof parameterValueInNumber === 'string') {
-        parameterValueInNumber = parseFloat(parameterValueInNumber);
-      }
-
       const newDataEntry = new Data({
         dataField: queryKeyNames[i],
-        dataValue: parameterValueInNumber,
+        dataValue: req.query[queryKeyNames[i]],
         projectID: userProject[0]._id,
         userID: existingUser._id,
       });
