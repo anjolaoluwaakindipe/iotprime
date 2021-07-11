@@ -45,7 +45,7 @@ function App() {
 
   return (
     <Switch>
-      <MainLayout path='/' exact componet={Home} />
+      <Route path='/' component={Home} exact />
       <Route path='/login' component={Login} />
       <Route path='/register' component={Register} />
       <MainLayout path='/dashboard' component={Dashboard} />

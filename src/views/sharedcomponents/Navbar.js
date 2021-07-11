@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 // components
-import SearchBar from '../sharedcomponents/SearchBar';
+// import SearchBar from '../sharedcomponents/SearchBar';
 
 // react icans
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -18,20 +18,9 @@ import { FaUserCircle } from 'react-icons/fa';
 
 export default function Navbar({ sideBarHandlerTrue }) {
   const { isLogged, user } = useSelector((state) => state.auth);
-  const [hideSearchBar, setHideSearchBar] = useState(window.width <= 900);
 
   useEffect(() => {
-    const startup = () => {
-      const checkScreenSize900 = () => {
-        window.innerWidth <= 900
-          ? setHideSearchBar(true)
-          : setHideSearchBar(false);
-      };
-      window.addEventListener('resize', checkScreenSize900);
-      checkScreenSize900();
-
-      return () => window.removeEventListener('resize', checkScreenSize900);
-    };
+    const startup = () => {};
 
     startup();
   }, []);
@@ -41,7 +30,6 @@ export default function Navbar({ sideBarHandlerTrue }) {
       <GiHamburgerMenu className='Navbar__menu' onClick={sideBarHandlerTrue} />
 
       <div className='Navbar__rightside'>
-        <SearchBar hide={hideSearchBar} />
         {isLogged ? (
           <Typography
             component='div'
@@ -49,7 +37,15 @@ export default function Navbar({ sideBarHandlerTrue }) {
             className='Navbar__user-account'
           >
             <FaUserCircle className='Navbar__avatar' />
-            {user?.email}
+            {user?.email ?? (
+              <div
+                style={{
+                  height: '11px',
+                  width: '30px',
+                  backgroundColor: 'blue',
+                }}
+              ></div>
+            )}
           </Typography>
         ) : (
           ''
@@ -57,4 +53,26 @@ export default function Navbar({ sideBarHandlerTrue }) {
       </div>
     </div>
   );
+}
+
+// const [hideSearchBar, setHideSearchBar] = useState(window.width <= 900);
+
+// const checkScreenSize900 = () => {
+
+//   window.innerWidth <= 900
+
+//     ? setHideSearchBar(true)
+
+//     : setHideSearchBar(false);
+
+// };
+
+// window.addEventListener('resize', checkScreenSize900);
+
+// checkScreenSize900();
+
+// return () => window.removeEventListener('resize', checkScreenSize900);
+
+{
+  /* <SearchBar hide={hideSearchBar} /> */
 }

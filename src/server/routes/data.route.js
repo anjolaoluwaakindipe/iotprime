@@ -12,7 +12,7 @@ const tokenVerificationMidd = require('../middleware/tokenVerificationMidd');
 const router = express.Router();
 
 // create data/field information
-router.post('/:email/:projectAPI', async (req, res) => {
+router.get('/:email/:projectAPI', async (req, res) => {
   // get user from user email
   const existingUser = await User.findOne({ email: req.params.email });
 
@@ -284,4 +284,27 @@ router.post(
     });
   }
 );
+
+// get the latest 30 updated fields
+router.get('/lastupdated', [tokenVerificationMidd], async (req, res) => {
+  const lastThirtyUpdatedFields = await Data.find({ userID: req.userID._id })
+    .sort({
+      dataTimeCreated: -1,
+    })
+    .limit(20);
+
+  const modifiedLastThirtyUpdateFields = lastThirtyUpdatedFields.map(
+    async (field) => {
+      return {
+        fieldName: field.dataField,
+        value: field.dataValue,
+        projectName: await Project.findOne({ _id: field.projectID }),
+        createdAt: field.dataTimeCreated,
+      };
+    }
+  );
+
+  return res.json({ success: true, data: modifiedLastThirtyUpdateFields });
+});
+
 module.exports = router;

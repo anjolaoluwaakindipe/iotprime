@@ -68,7 +68,7 @@ const Dashboard = () => {
     <div className='Dashboard__container '>
       <div className='Dashboard__content-container Dashboard-component'>
         <Typography variant='h4' className='Dashboard__header'>
-          Project
+          Last Updated Projects
         </Typography>
         {allProjects.map((project) => (
           <div
