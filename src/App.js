@@ -16,6 +16,9 @@ import {
   ErrorPage,
   Home,
   Projects,
+  LogFolder,
+  CreateProject,
+  ProjectInfo,
 } from './views';
 import MainLayout from './views/layouts/MainLayout';
 import { loginUserFailure, loginUserSuccess } from './redux/Auth/authActions';
@@ -52,6 +55,13 @@ function App() {
       <MainLayout path='/project/:projectID/graph/:dataID' component={Graph} />
       <MainLayout path='/project' component={Projects} exact />
       <MainLayout path='/project/:projectID' component={Project} exact />
+      <MainLayout path='/log' component={LogFolder} exact />
+      <MainLayout path='/create-project' component={CreateProject} exact />
+      <MainLayout
+        path='/project-info/:projectID'
+        component={ProjectInfo}
+        exact
+      />
       <Route component={ErrorPage} />
     </Switch>
   );

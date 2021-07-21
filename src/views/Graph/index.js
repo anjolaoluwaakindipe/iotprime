@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import axios from 'axios';
+// react icons
+import { BiArrowBack } from 'react-icons/bi';
 
 // react-router
 import { useHistory, useParams } from 'react-router';
@@ -118,91 +119,111 @@ const Graph = () => {
     history.push('/login');
   }
 
+  const updateChart = async () => {
+    if (dataDate === 'today') {
+      const resData = await getDataDay(tokenStorage.token, projectID, dataID);
+      console.log(resData);
+
+      if (resData.success) {
+        const chartFormatData = resData.data.map((data) => ({
+          x: new Date(data.dataTimeCreated).toLocaleString(),
+          y: data.dataValue,
+        }));
+        console.log(chartFormatData);
+        return setData(chartFormatData);
+      }
+      return setData([]);
+    }
+    if (dataDate === 'year') {
+      const resData = await getDataYear(tokenStorage.token, projectID, dataID);
+
+      if (resData.success) {
+        const chartFormatData = resData.data.map((data) => ({
+          x: new Date(data.dataTimeCreated).toLocaleString(),
+          y: data.dataValue,
+        }));
+        console.log(chartFormatData);
+        return setData(chartFormatData);
+      }
+
+      return setData([]);
+    }
+    if (dataDate === 'week') {
+      const resData = await getDataWeek(tokenStorage.token, projectID, dataID);
+
+      if (resData.success) {
+        const chartFormatData = resData.data.map((data) => ({
+          x: new Date(data.dataTimeCreated).toLocaleString(),
+          y: data.dataValue,
+        }));
+        console.log(chartFormatData);
+        return setData(chartFormatData);
+      }
+      return setData([]);
+    }
+  };
+
   const handleDateChange = (event) => {
     setDataDate(event.target.value);
+    console.log(event.target.value);
+    console.log(dataDate);
   };
 
   useEffect(() => {
     const startup = async () => {
-      if (dataDate === 'today') {
-        const resData = await getDataDay(tokenStorage.token, projectID, dataID);
-        console.log(resData);
-
-        if (resData.success) {
-          const chartFormatData = resData.data.map((data) => ({
-            x: new Date(data.dataTimeCreated).toLocaleString(),
-            y: data.dataValue,
-          }));
-          console.log(chartFormatData);
-          return setData(chartFormatData);
-        }
-        setData([]);
-      }
-      if (dataDate === 'year') {
-        const resData = await getDataYear(
-          tokenStorage.token,
-          projectID,
-          dataID
-        );
-
-        if (resData.success) {
-          const chartFormatData = resData.data.map((data) => ({
-            x: new Date(data.dataTimeCreated).toLocaleString(),
-            y: data.dataValue,
-          }));
-          console.log(chartFormatData);
-          return setData(chartFormatData);
-        }
-
-        setData([]);
-      }
-      if (dataDate === 'week') {
-        const resData = await getDataWeek(
-          tokenStorage.token,
-          projectID,
-          dataID
-        );
-
-        if (resData.success) {
-          const chartFormatData = resData.data.map((data) => ({
-            x: new Date(data.dataTimeCreated).toLocaleString(),
-            y: data.dataValue,
-          }));
-          console.log(chartFormatData);
-          return setData(chartFormatData);
-        }
-        setData([]);
-      }
+      await updateChart();
     };
     startup();
 
     const socket = io('http://localhost:7000/');
     socket.on('connection');
     socket.on(projectID, async () => {
-      await startup();
+      await updateChart();
     });
 
     // const interval = setInterval(async () => {
     //   await startup();
     // }, 5000);
     // return () => clearInterval(interval);
-  }, [dataDate]);
+  }, []);
 
   return (
     <div className='Graph__container'>
-      <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-label'>Age</InputLabel>
-        <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
-          value={dataDate}
-          onChange={handleDateChange}
-        >
-          <MenuItem value={'today'}>Today</MenuItem>
-          <MenuItem value={'week'}>Last Week</MenuItem>
-          <MenuItem value={'year'}>Last Year</MenuItem>
-        </Select>
-      </FormControl>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          margin: '0 3rem',
+        }}
+      >
+        <BiArrowBack
+          onClick={() => {
+            history.goBack();
+          }}
+          style={{
+            fontSize: '25px',
+            margin: '1rem 0',
+            cursor: 'pointer',
+            ':hover': { backgroundColor: 'grey' },
+          }}
+        />
+        <FormControl className={classes.formControl}>
+          <InputLabel id='demo-simple-select-label'>Age</InputLabel>
+          <Select
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
+            onChange={(event) => {
+              handleDateChange(event);
+            }}
+            value={dataDate}
+          >
+            <MenuItem value={'today'}>Today</MenuItem>
+            <MenuItem value={'week'}>Last Week</MenuItem>
+            <MenuItem value={'year'}>Last Year</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
       <div className='Graph'>
         <Line
           options={options(dataDate, dataID)}

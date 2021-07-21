@@ -20,7 +20,7 @@ exports.userRegisterController = async (req, res) => {
       .then(() =>
         res.json({
           success: true,
-          message: 'Your account has been created',
+          message: 'Your account has been created, Welcome to Prime',
         })
       )
       .catch((err) =>

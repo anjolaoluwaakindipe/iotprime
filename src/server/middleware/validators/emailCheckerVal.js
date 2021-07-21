@@ -8,8 +8,6 @@ module.exports = async (req, res, next) => {
 
   // error handling
   if (existingEmail)
-    return res
-      .status(401)
-      .json({ success: false, error: ['Email already in use'] });
+    return res.json({ success: false, error: ['Email already in use'] });
   next();
 };

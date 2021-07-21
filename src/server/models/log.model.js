@@ -16,6 +16,10 @@ const logSchema = mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'Users',
   },
+  isRead: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model('Logs', logSchema);

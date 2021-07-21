@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 import download from 'downloadjs';
 
 // react redux
@@ -21,12 +21,13 @@ import AddProjectButton from './components/AddProjectButton';
 import ProjectCard from './components/ProjectCard';
 
 // custom services
-import { getAllProjects } from '../../services/project.services';
+import { getAllProjects, deleteProject } from '../../services/project.services';
 import { downloadcsv } from '../../services/export.services';
 
 export default function Projects() {
   const allProjects = useSelector((state) => state.project.allProjects);
   const tokenStorage = JSON.parse(localStorage.getItem('token'));
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const downloadcsvClick = async (projectID, projectName) => {
@@ -39,6 +40,13 @@ export default function Projects() {
         download(res.data, projectName + '.csv');
       });
     }
+  };
+
+  const handleDeleteProject = async (projectID) => {
+    await deleteProject(tokenStorage.token, projectID);
+    dispatch(
+      setAllProjects(allProjects.filter((project) => project._id !== projectID))
+    );
   };
 
   useEffect(() => {
@@ -55,7 +63,7 @@ export default function Projects() {
           return <Redirect to='/login' />;
         }
 
-        dispatch(setAllProjects(allProjects.data));
+        dispatch(setAllProjects(allProjects?.data));
         dispatch(setLoadingFalse());
       }
     };
@@ -74,23 +82,27 @@ export default function Projects() {
           <div className='Projects__loading-div'></div>
           <div className='Projects__loading-div'></div>
           <div className='Projects__loading-div'></div>
-          <AddProjectButton />
+          <AddProjectButton onClick={() => history.push('/create-project')} />
         </div>
       ) : (
         <div className='Projects__content'>
           {allProjects.map((project) => (
             <ProjectCard
               key={project._id}
+              _id={project._id}
               name={project.projectName}
               description={project.projectDescription}
               timeCreated={project.projectTimeCreated}
               dateCreated={project.projectDateCreated}
+              handleProjectDelete={() => {
+                handleDeleteProject(project._id);
+              }}
               onClick={() => {
                 downloadcsvClick(project._id, project.projectName);
               }}
             />
           ))}
-          <AddProjectButton />
+          <AddProjectButton onClick={() => history.push('/create-project')} />
         </div>
       )}
     </div>

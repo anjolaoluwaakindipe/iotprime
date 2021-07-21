@@ -46,9 +46,11 @@ const getDataAnyDate = async (token, projectID, dataField, date) => {
 };
 
 const getlastUpdatedData = async (token) => {
-  return await axios.get(API_URL + '/lastupdateed', {
-    headers: { 'Auth-Token': token },
-  });
+  return await axios
+    .get(API_URL + '/lastupdated', {
+      headers: { 'Auth-Token': token },
+    })
+    .then((res) => res.data);
 };
 
 export {

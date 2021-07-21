@@ -1,12 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import IntroContent from './content/IntroContent.json';
 import MiddleBlockContent from './content/MiddleBlockContent.json';
 import AboutContent from './content/AboutContent.json';
 import MissionContent from './content/MissionContent.json';
 import ProductContent from './content/ProductContent.json';
-import ContactContent from './content/ContactContent.json';
-
-import ContactForm from './components/ContactForm';
 import MiddleBlock from './components/MiddleBlock';
 import Container from './common/Container';
 import ScrollToTop from './common/ScrollToTop';
@@ -15,6 +14,11 @@ import Header from './components/Header';
 import './styles';
 
 const Home = () => {
+  const isLogged = useSelector((state) => state.auth.isLogged);
+
+  if (isLogged) {
+    return <Redirect to='/dashboard' />;
+  }
   return (
     <>
       <Header />

@@ -24,7 +24,9 @@ router.get('/home', (req, res) => {
 // get all projects based on account
 router.get('/', [tokenVerificationMidd], async (req, res) => {
   // use token to get all projects
-  const allProjects = await Project.find({ userID: req.userID._id });
+  const allProjects = await Project.find({ userID: req.userID._id }).sort({
+    projectTimeCreated: -1,
+  });
 
   // modify the project info response
   const modified = allProjects.map(
@@ -215,15 +217,18 @@ router.put('/:_id/updatePrivacy', [tokenVerificationMidd], async (req, res) => {
 
 // delet a project
 router.delete('/:_id', tokenVerificationMidd, async (req, res) => {
-  await Project.deleteOne({ _id: req.params._id }).catch((err) =>
-    console.log(err)
-  );
-  await Data.deleteOne({ projectID: req.params._id }).catch((err) =>
-    console.log(err)
-  );
-  await Log.deleteOne({ projectID: req.params._id }).catch((err) =>
-    console.log(err)
-  );
+  await Project.deleteOne({
+    _id: req.params._id,
+    userID: req.userID._id,
+  }).catch((err) => console.log(err));
+  await Data.deleteMany({
+    projectID: req.params._id,
+    userID: req.userID._id,
+  }).catch((err) => console.log(err));
+  await Log.deleteMany({
+    projectID: req.params._id,
+    userID: req.userID._id,
+  }).catch((err) => console.log(err));
   return res.json({
     success: true,
     message:

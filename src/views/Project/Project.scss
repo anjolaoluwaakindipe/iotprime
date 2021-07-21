@@ -1,2 +1,20 @@
-.Project__container{
+.Project__container {
+  position: relative;
+
+  .Project__back-button {
+    position: absolute;
+    top: -40px;
+    left: -30px;
+    transition: all 0.2s ease;
+    height: 1rem;
+    width: 1rem;
+
+    &:hover {
+      background-color: rgb(183, 183, 183);
+    }
+  }
+  .Project__header {
+    font-weight: 900;
+    margin-bottom: 1rem;
+  }
 }

@@ -20,13 +20,15 @@ const login = async (email, password) => {
 };
 
 const register = async (username, email, password, lastName, firstName) => {
-  return axios.post(API_URL + 'register', {
-    username,
-    email,
-    lastName,
-    password,
-    firstName,
-  });
+  return axios
+    .post(API_URL + 'register', {
+      username,
+      email,
+      lastName,
+      password,
+      firstName,
+    })
+    .then((res) => res.data);
 };
 
 const userData = async (token) => {

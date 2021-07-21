@@ -287,24 +287,37 @@ router.post(
 
 // get the latest 30 updated fields
 router.get('/lastupdated', [tokenVerificationMidd], async (req, res) => {
-  const lastThirtyUpdatedFields = await Data.find({ userID: req.userID._id })
+  const lastTwentyUpdatedFields = await Data.find({ userID: req.userID._id })
     .sort({
       dataTimeCreated: -1,
     })
     .limit(20);
 
-  const modifiedLastThirtyUpdateFields = lastThirtyUpdatedFields.map(
-    async (field) => {
+  if (!lastTwentyUpdatedFields) {
+    return res.json({
+      success: false,
+      message: 'No data available please create a project and send data',
+    });
+  }
+
+  const modifiedLastTwentyUpdatedFields = await Promise.all(
+    lastTwentyUpdatedFields.map(async (field) => {
+      const project = await Project.findOne({ _id: field.projectID });
       return {
+        dataID: field._id,
         fieldName: field.dataField,
         value: field.dataValue,
-        projectName: await Project.findOne({ _id: field.projectID }),
-        createdAt: field.dataTimeCreated,
+        createdAt: new Date(field.dataTimeCreated).toLocaleString(),
+        projectName: project.projectName,
+        projectID: project._id,
       };
-    }
+    })
   );
 
-  return res.json({ success: true, data: modifiedLastThirtyUpdateFields });
+  return res.json({
+    success: true,
+    data: [...modifiedLastTwentyUpdatedFields],
+  });
 });
 
 module.exports = router;

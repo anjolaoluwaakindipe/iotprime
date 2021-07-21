@@ -5,7 +5,7 @@ exports.registrationValidationResult = (req, res, next) => {
   const result = validationResult(req);
   if (!result.isEmpty()) {
     const error = result.array()[0].msg;
-    return res.status(400).json({ success: false, error: error });
+    return res.json({ success: false, error: error });
   }
   next();
 };

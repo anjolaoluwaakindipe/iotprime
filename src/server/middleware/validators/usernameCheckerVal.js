@@ -8,8 +8,6 @@ module.exports = async (req, res, next) => {
 
   // error handling
   if (existingUsername)
-    return res
-      .status(401)
-      .json({ success: false, error: ['Username already exists'] });
+    return res.json({ success: false, error: ['Username already exists'] });
   next();
 };

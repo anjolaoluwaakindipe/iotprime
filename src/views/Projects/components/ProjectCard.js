@@ -1,4 +1,11 @@
 import React from 'react';
+
+// react router
+import { useHistory } from 'react-router-dom';
+
+// material ui
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -35,6 +42,7 @@ const useStyles = makeStyles({
     fontSize: 20,
     fontWeight: '800',
     textAlign: 'center',
+    cursor: 'pointer',
   },
   pos: {
     marginBottom: 12,
@@ -73,13 +81,41 @@ const useStyles = makeStyles({
 });
 
 export default function ProjectCard({
+  _id,
   name,
   description,
   dateCreated,
   timeCreated,
   onClick,
+  handleProjectDelete,
 }) {
   const classes = useStyles();
+  const history = useHistory();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleParameters = () => {
+    handleClose();
+    history.push(`project/${_id}`);
+  };
+
+  const handleInfo = () => {
+    handleClose();
+    history.push(`info/${_id}`);
+  };
+
+  const handleDelete = () => {
+    handleClose();
+    handleProjectDelete();
+  };
 
   return (
     <Card className={classes.root} variant='outlined'>
@@ -87,7 +123,12 @@ export default function ProjectCard({
         <Typography className={classes.pos} color='textSecondary'>
           {timeCreated + ' ' + dateCreated}
         </Typography>
-        <Typography className={classes.title} variant='h5' component='h2'>
+        <Typography
+          className={classes.title}
+          variant='h5'
+          component='h2'
+          onClick={handleParameters}
+        >
           {name.toUpperCase()}
         </Typography>
         <Typography
@@ -109,9 +150,24 @@ export default function ProjectCard({
           <GrDocumentCsv className={classes.csvIcon} />
           Download CSV
         </Button>
-        <Button>
+        <Button
+          onClick={handleClick}
+          aria-controls='simple-menu'
+          aria-haspopup='true'
+        >
           <FiMoreVertical />
         </Button>
+        <Menu
+          id='simple-menu'
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleParameters}>Parameters</MenuItem>
+          <MenuItem onClick={handleInfo}>Info</MenuItem>
+          <MenuItem onClick={handleDelete}>Delete</MenuItem>
+        </Menu>
       </CardActions>
     </Card>
   );
