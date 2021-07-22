@@ -54,9 +54,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cd ./node_modules/admin-bro && npm link ../../node_modules/react && cd ../../ && react-scripts build ",
+    "build": "react-scripts build ",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "fixadminbro": "cd ./node_modules/admin-bro && npm link ../../node_modules/react && cd ../../",
     "devserver": "NODE_ENV=development nodemon src/server/server.js",
     "prodserver": "NODE_ENV=production node src/server/server.js"
   },
