@@ -173,9 +173,12 @@ const Graph = () => {
     };
     startup();
 
-    const socket = io('http://localhost:7000/');
-    socket.on('connection');
+    const socket = io('/');
+    socket.on('connection', () => {
+      console.log('connected to socket');
+    });
     socket.on(projectID, async () => {
+      console.log('data sent');
       await updateChart();
     });
 
