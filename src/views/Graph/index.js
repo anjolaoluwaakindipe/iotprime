@@ -165,8 +165,6 @@ const Graph = () => {
 
   const handleDateChange = (event) => {
     setDataDate(event.target.value);
-    console.log(event.target.value);
-    console.log(dataDate);
   };
 
   useEffect(() => {
@@ -185,7 +183,7 @@ const Graph = () => {
     //   await startup();
     // }, 5000);
     // return () => clearInterval(interval);
-  }, []);
+  }, [dataDate]);
 
   return (
     <div className='Graph__container'>
