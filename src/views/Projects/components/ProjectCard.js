@@ -109,7 +109,7 @@ export default function ProjectCard({
 
   const handleInfo = () => {
     handleClose();
-    history.push(`info/${_id}`);
+    history.push(`/project-info/${_id}`);
   };
 
   const handleDelete = () => {
