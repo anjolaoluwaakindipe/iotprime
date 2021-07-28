@@ -115,12 +115,11 @@ router.post(
       (field) => field.fieldName !== '' && field.fieldName !== undefined
     );
     if (validFields.length === 0) {
-      res.status(400).json({
+      res.json({
         success: false,
         message: 'Please provide at least one field name',
       });
     }
-
     // remove duplicates from validfields
     const removeduplicates = (duplicates) => {
       const flag = {};

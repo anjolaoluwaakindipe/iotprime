@@ -214,6 +214,42 @@ router.get(
   }
 );
 
+// get data for a month
+router.get(
+  '/:projectID/:dataField/monthdata',
+  [tokenVerificationMidd],
+  async (req, res) => {
+    // finds all specific field data belonging to that accounts project for the span of the month
+    const thisWeeksData = await Data.find({
+      projectID: req.params.projectID,
+      dataField: req.params.dataField,
+      userID: req.userID._id,
+      dataTimeCreated: {
+        $lt: new Date(),
+        $gte: new Date(new Date().setDate(new Date().getDate() - 30)),
+      },
+    });
+
+    // checks if there is any data for the month (error handling)
+    if (thisWeeksData.length === 0) {
+      res.json({
+        success: false,
+        message: 'There are no available data for this month',
+      });
+    }
+
+    // responds with the data for the month
+    res.json({
+      success: true,
+      message: "Here this month's data",
+      data: thisWeeksData.map((data) => ({
+        dataValue: data.dataValue,
+        dataTimeCreated: data.dataTimeCreated,
+      })),
+    });
+  }
+);
+
 // get data for the year
 router.get(
   '/:projectID/:dataField/yeardata',

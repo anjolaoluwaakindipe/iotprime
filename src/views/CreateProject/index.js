@@ -12,6 +12,8 @@ import './CreateProject.scss';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+import { Snackbar } from '@material-ui/core';
 
 // react-icon
 import { BiArrowBack } from 'react-icons/bi';
@@ -35,6 +37,9 @@ function CreateProject() {
   const [fieldUnit7, setFieldUnit7] = useState('');
   const [field8, setField8] = useState('');
   const [fieldUnit8, setFieldUnit8] = useState('');
+  const [message, setMessage] = useState('');
+  const [open, setOpen] = useState(false);
+  const [severity, setSeverity] = useState('error');
 
   const history = useHistory();
   const isLogged = useSelector((state) => state.auth.isLogged);
@@ -63,11 +68,33 @@ function CreateProject() {
       field8,
       fieldUnit8
     );
-    console.log(createdProject);
-    history.push('/project');
+
+    if (createdProject.error || createdProject?.success === false) {
+      createdProject?.error && setMessage(createdProject.error);
+      createdProject?.error && setOpen(true);
+      createdProject?.message && setMessage(createdProject.message);
+      return;
+    }
+
+    if (createdProject?.success === true) {
+      createdProject?.success === true && setSeverity('success');
+      createdProject?.message && setOpen(true);
+      console.log(createdProject);
+      history.push('/project');
+      return;
+    }
   };
+
   const onChange = (e, set) => {
     set(e.target.value);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
 
   if (!isLogged) {
@@ -76,6 +103,21 @@ function CreateProject() {
 
   return (
     <div className='Dashboard-component'>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <Alert
+          elevation={6}
+          variant='filled'
+          severity={severity}
+          onClose={handleClose}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
       <BiArrowBack
         onClick={() => {
           history.push('/project');
@@ -109,6 +151,9 @@ function CreateProject() {
           onChange={(e) => onChange(e, setProjectName)}
         />
         <TextField
+          multiline
+          maxRows={6}
+          rows={4}
           className='CreateProject__textfield'
           variant='outlined'
           margin='normal'

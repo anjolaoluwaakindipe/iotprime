@@ -210,7 +210,7 @@ const Graph = () => {
           }}
         />
         <FormControl className={classes.formControl}>
-          <InputLabel id='demo-simple-select-label'>Age</InputLabel>
+          <InputLabel id='demo-simple-select-label'>Period</InputLabel>
           <Select
             labelId='demo-simple-select-label'
             id='demo-simple-select'
@@ -220,8 +220,8 @@ const Graph = () => {
             value={dataDate}
           >
             <MenuItem value={'today'}>Today</MenuItem>
-            <MenuItem value={'week'}>Last Week</MenuItem>
-            <MenuItem value={'year'}>Last Year</MenuItem>
+            <MenuItem value={'week'}>Weekly</MenuItem>
+            <MenuItem value={'year'}>1 Year A</MenuItem>
           </Select>
         </FormControl>
       </div>
