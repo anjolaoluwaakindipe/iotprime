@@ -1,0 +1,32 @@
+.Logs__header {
+  margin-bottom: 2rem;
+}
+
+.Logs__container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 16px;
+  background-color: rgb(193, 187, 187);
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  padding: 2rem;
+  border: solid 1px black;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+
+  &:hover {
+    background-color: rgb(120, 120, 120);
+  }
+
+  .Logs__message {
+    width: 10rem;
+  }
+
+  .Logs__Project {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -221,7 +221,7 @@ const Graph = () => {
           >
             <MenuItem value={'today'}>Today</MenuItem>
             <MenuItem value={'week'}>Weekly</MenuItem>
-            <MenuItem value={'year'}>1 Year A</MenuItem>
+            <MenuItem value={'year'}>1 Year Ago</MenuItem>
           </Select>
         </FormControl>
       </div>

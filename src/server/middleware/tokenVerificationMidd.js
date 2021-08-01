@@ -8,16 +8,14 @@ const tokenVerification = async (req, res, next) => {
   const token = req.header('Auth-Token');
 
   if (!token) {
-    res
-      .status(401)
-      .json({ success: false, message: 'Access Denied Please Log In' });
+    return res.json({ success: false, message: 'Access Denied Please Log In' });
   }
   try {
     const verified = await jwt.verify(token, TOKEN_SECRET);
     req.userID = verified;
     next();
   } catch (err) {
-    res.status(400).json({ success: false, message: 'Invalid Token' });
+    return res.json({ success: false, message: 'Invalid Token' });
   }
 };
 

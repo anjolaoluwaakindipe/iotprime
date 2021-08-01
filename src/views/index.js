@@ -9,6 +9,8 @@ import Projects from './Projects';
 import LogFolder from './LogFolder';
 import CreateProject from './CreateProject';
 import ProjectInfo from './ProjectInfo';
+import Logs from './Logs';
+import Log from './Log';
 
 export {
   Graph,
@@ -22,4 +24,6 @@ export {
   LogFolder,
   CreateProject,
   ProjectInfo,
+  Logs,
+  Log,
 };

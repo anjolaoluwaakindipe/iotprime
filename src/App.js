@@ -19,6 +19,8 @@ import {
   LogFolder,
   CreateProject,
   ProjectInfo,
+  Logs,
+  Log,
 } from './views';
 import MainLayout from './views/layouts/MainLayout';
 import { loginUserFailure, loginUserSuccess } from './redux/Auth/authActions';
@@ -56,6 +58,8 @@ function App() {
       <MainLayout path='/project' component={Projects} exact />
       <MainLayout path='/project/:projectID' component={Project} exact />
       <MainLayout path='/log' component={LogFolder} exact />
+      <MainLayout path='/log/:projectID' component={Logs} exact />
+      <MainLayout path='/log/:projectID/:logID' component={Log} exact />
       <MainLayout path='/create-project' component={CreateProject} exact />
       <MainLayout
         path='/project-info/:projectID'

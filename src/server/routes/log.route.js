@@ -37,9 +37,7 @@ router.get('/folder', tokenVerificationMidd, async (req, res) => {
     return res.json({ success: false, message: 'No Logs available' });
   }
 
-  const modifiedLogFolder = logFolders.filter(
-    (logFolder) => logFolder.unreadMessages !== 0
-  );
+  const modifiedLogFolder = logFolders;
 
   if (modifiedLogFolder.length === 0) {
     return res.json({ success: false, message: 'No Logs available' });
@@ -70,8 +68,18 @@ router.get('/:projectID', async (req, res) => {
   // await Log.updateMany({}, { $set: { isRead: false } }, { multi: true });
   const projectLog = await Log.find({
     projectID: req.params.projectID,
+  }).sort({ timeStamp: -1 });
+  return res.json({ success: true, data: projectLog });
+});
+
+// get one log
+router.get('/:projectID/:logID', async (req, res) => {
+  // await Log.updateMany({}, { $set: { isRead: false } }, { multi: true });
+  const projectLog = await Log.findOne({
+    projectID: req.params.projectID,
+    _id: req.params.logID,
   });
-  return res.status(200).json({ success: true, data: projectLog });
+  return res.json({ success: true, data: projectLog });
 });
 
 // delete a specific log
@@ -84,7 +92,7 @@ router.delete('/:projectID/:logID', tokenVerificationMidd, async (req, res) => {
 });
 
 // mark log as read
-router.put('/:projectID/:logID', tokenVerificationMidd, async (req, res) => {
+router.put('/:projectID/:logID', async (req, res) => {
   const log = await Log.findOne({
     _id: req.params.logID,
     projectID: req.params.projectID,
@@ -94,6 +102,7 @@ router.put('/:projectID/:logID', tokenVerificationMidd, async (req, res) => {
     .updateOne({ isRead: true })
     .then(() => {
       log.save();
+      return res.json({ success: true, message: 'Message has been read' });
     })
     .catch((err) => console.log(err));
 

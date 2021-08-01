@@ -66,14 +66,14 @@ export default function Sidebar({ showSideBar, sideBarHandlerFalse }) {
             Project
           </li>
         </Link>
-        <Link to='/reports' onClick={sideBarHandlerFalse}>
+        <Link to='/log' onClick={sideBarHandlerFalse}>
           <li
             className={`SideBar__tab ${
-              history.location.pathname === '/reports' && 'Selected'
+              history.location.pathname === '/log' && 'Selected'
             }  `}
           >
             <GoReport className='SideBar__icons' />
-            Report
+            Logs
           </li>
         </Link>
       </ul>
