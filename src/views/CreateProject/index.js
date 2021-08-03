@@ -37,6 +37,30 @@ function CreateProject() {
   const [fieldUnit7, setFieldUnit7] = useState('');
   const [field8, setField8] = useState('');
   const [fieldUnit8, setFieldUnit8] = useState('');
+  const [field9, setField9] = useState('');
+  const [fieldUnit9, setFieldUnit9] = useState('');
+  const [field10, setField10] = useState('');
+  const [fieldUnit10, setFieldUnit10] = useState('');
+  const [field11, setField11] = useState('');
+  const [fieldUnit11, setFieldUnit11] = useState('');
+  const [field12, setField12] = useState('');
+  const [fieldUnit12, setFieldUnit12] = useState('');
+  const [field13, setField13] = useState('');
+  const [fieldUnit13, setFieldUnit13] = useState('');
+  const [field14, setField14] = useState('');
+  const [fieldUnit14, setFieldUnit14] = useState('');
+  const [field15, setField15] = useState('');
+  const [fieldUnit15, setFieldUnit15] = useState('');
+  const [field16, setField16] = useState('');
+  const [fieldUnit16, setFieldUnit16] = useState('');
+  const [field17, setField17] = useState('');
+  const [fieldUnit17, setFieldUnit17] = useState('');
+  const [field18, setField18] = useState('');
+  const [fieldUnit18, setFieldUnit18] = useState('');
+  const [field19, setField19] = useState('');
+  const [fieldUnit19, setFieldUnit19] = useState('');
+  const [field20, setField20] = useState('');
+  const [fieldUnit20, setFieldUnit20] = useState('');
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
   const [severity, setSeverity] = useState('error');
@@ -66,7 +90,31 @@ function CreateProject() {
       field7,
       fieldUnit7,
       field8,
-      fieldUnit8
+      fieldUnit8,
+      field9,
+      fieldUnit9,
+      field10,
+      fieldUnit10,
+      field11,
+      fieldUnit11,
+      field12,
+      fieldUnit12,
+      field13,
+      fieldUnit13,
+      field14,
+      fieldUnit14,
+      field15,
+      fieldUnit15,
+      field16,
+      fieldUnit16,
+      field17,
+      fieldUnit17,
+      field18,
+      fieldUnit18,
+      field19,
+      fieldUnit19,
+      field20,
+      fieldUnit20
     );
 
     if (createdProject.error || createdProject?.success === false) {
@@ -347,6 +395,270 @@ function CreateProject() {
           autoComplete='current-password'
           value={fieldUnit8}
           onChange={(e) => onChange(e, setFieldUnit8)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field9'
+          label='field 9 name'
+          autoComplete='current-password'
+          value={field9}
+          onChange={(e) => onChange(e, setField9)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit9'
+          label='field 9 unit'
+          autoComplete='current-password'
+          value={fieldUnit9}
+          onChange={(e) => onChange(e, setFieldUnit9)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field10'
+          label='field 10 name'
+          autoComplete='current-password'
+          value={field10}
+          onChange={(e) => onChange(e, setField10)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit10'
+          label='field 10 unit'
+          autoComplete='current-password'
+          value={fieldUnit10}
+          onChange={(e) => onChange(e, setFieldUnit10)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field11'
+          label='field 11 name'
+          autoComplete='current-password'
+          value={field11}
+          onChange={(e) => onChange(e, setField11)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit11'
+          label='field 11 unit'
+          autoComplete='current-password'
+          value={fieldUnit11}
+          onChange={(e) => onChange(e, setFieldUnit11)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field12'
+          label='field 12 name'
+          autoComplete='current-password'
+          value={field12}
+          onChange={(e) => onChange(e, setField12)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit12'
+          label='field 12 unit'
+          autoComplete='current-password'
+          value={fieldUnit12}
+          onChange={(e) => onChange(e, setFieldUnit12)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field13'
+          label='field 13 name'
+          autoComplete='current-password'
+          value={field13}
+          onChange={(e) => onChange(e, setField13)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit13'
+          label='field 13 unit'
+          autoComplete='current-password'
+          value={fieldUnit13}
+          onChange={(e) => onChange(e, setFieldUnit13)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field14'
+          label='field 14 name'
+          autoComplete='current-password'
+          value={field14}
+          onChange={(e) => onChange(e, setField14)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit14'
+          label='field 14 unit'
+          autoComplete='current-password'
+          value={fieldUnit14}
+          onChange={(e) => onChange(e, setFieldUnit14)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field15'
+          label='field 15 name'
+          autoComplete='current-password'
+          value={field15}
+          onChange={(e) => onChange(e, setField15)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit15'
+          label='field 15 unit'
+          autoComplete='current-password'
+          value={fieldUnit15}
+          onChange={(e) => onChange(e, setFieldUnit15)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field16'
+          label='field 16 name'
+          autoComplete='current-password'
+          value={field16}
+          onChange={(e) => onChange(e, setField16)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit16'
+          label='field 16 unit'
+          autoComplete='current-password'
+          value={fieldUnit16}
+          onChange={(e) => onChange(e, setFieldUnit16)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field17'
+          label='field 17 name'
+          autoComplete='current-password'
+          value={field17}
+          onChange={(e) => onChange(e, setField17)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit17'
+          label='field 17 unit'
+          autoComplete='current-password'
+          value={fieldUnit17}
+          onChange={(e) => onChange(e, setFieldUnit17)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field18'
+          label='field 18 name'
+          autoComplete='current-password'
+          value={field18}
+          onChange={(e) => onChange(e, setField18)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit18'
+          label='field 18 unit'
+          autoComplete='current-password'
+          value={fieldUnit18}
+          onChange={(e) => onChange(e, setFieldUnit18)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field19'
+          label='field 19 name'
+          autoComplete='current-password'
+          value={field19}
+          onChange={(e) => onChange(e, setField19)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit19'
+          label='field 19 unit'
+          autoComplete='current-password'
+          value={fieldUnit19}
+          onChange={(e) => onChange(e, setFieldUnit19)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='field20'
+          label='field 20 name'
+          autoComplete='current-password'
+          value={field20}
+          onChange={(e) => onChange(e, setField20)}
+        />
+        <TextField
+          className='CreateProject__textfield'
+          variant='outlined'
+          margin='normal'
+          fullWidth
+          name='fieldUnit20'
+          label='field 20 unit'
+          autoComplete='current-password'
+          value={fieldUnit20}
+          onChange={(e) => onChange(e, setFieldUnit20)}
         />
 
         <Button
