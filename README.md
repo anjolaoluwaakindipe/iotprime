@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# IOT PRIME
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is my undergraduate final year project where I was tasked to create an online platform that could acquire and monitor heterogeneous data from IoT sensors or devices. It consists of an express.js server (source code in src/server) that is connected to a mongodb database which handles receiving API post requests from IoT devices, storing the data within the database, and through websockets, communicates with the frontend portal so that users can see changes within their IoT data. Users are able to register, login, create multiple "projects" which will be responsible for each IoT device a user has. Users can also download IoT data for a specific project as a csv.
 
-## Available Scripts
 
-In the project directory, you can run:
+## ENVIRONMENTAL VARIABLES
+The project uses the dotenv library in order to get environmental variables, so a .env file should be created with the following variables:
 
-### `yarn start`
+### NODE_PORT
+What port do you want the server to run on (It should be different from the port React.js uses to run it's development server).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### NODE_ENV
+This could be "development" or "production" depending on what environment your running it on.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### DB_URL_DEVELOPMENT
+This is the mongodb development server.
 
-### `yarn test`
+### DB_URL_PRODUCTION
+This is the mongodb production server. It could be the same value as the `DB_URL_DEVELOPMENT` but it is required during production.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### LOGIN_TOKEN_SECRET
+This is the secret key that will be used by the `jsonwebtoken` library in order to sign and verify tokens.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## HOW TO GET STARTED
+1. Clone this repository.
+2. Open a terminal.
+3. Go to the directory that this project was cloned to with the terminal.
+4. Type “npm install” in order to download dependencies that are required by this project.
+5. Type "npm run fixadminbro" to fix some dependency issues that occur between this project's react module and the adminbro's react module.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### For development
+7. Type "npm run devserver" to launch a development backend server in the background.
+8. Type "npm start" to launch development frontend server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### For production
+9. Type "npm build" to build react.js code.
+10. Type "npm run prodserver" to launch a production server that uses the build folder from react.js (to see the admin page just type "/admin" after the domain).
 
-### `yarn eject`
+## What I learnt 
+1. How to use material-ui to create the frontend portal
+2. How to use socket.io to tell the frontend to update itself when data is sent to the server by an IoT device.
+3. How to design a database with mongodb to handle storing all the complex data.
+4. How to use jwt for authentication.
+5. How to use adminbros to set up an easy to use admin panel.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
