@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAProject } from '../../services/project.services';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // material-ui
@@ -18,6 +18,7 @@ function ProjectInfo() {
   const tokenStorage = JSON.parse(localStorage.getItem('token'));
   const user = useSelector((state) => state.auth.user);
   const history = useHistory();
+  
 
   useEffect(() => {
     const startUp = async () => {
@@ -81,7 +82,7 @@ function ProjectInfo() {
             DATA URL
           </Grid>
           <Grid item xs={12} className='ProjectInfo__content'>
-            {`http://93.188.165.82/anj/data/${user?.email}/${projectInfo?.projectAPI}`}
+            {`${window.location.hostname}/anj/data/${user?.email}/${projectInfo?.projectAPI}`}
           </Grid>
         </Grid>
       </Grid>

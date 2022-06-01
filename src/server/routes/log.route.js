@@ -63,7 +63,7 @@ router.delete('folder/:projectID', tokenVerificationMidd, async (req, res) => {
   });
 });
 
-// get all Logs of a project/folder
+// get all Logs of a project folder
 router.get('/:projectID', async (req, res) => {
   // await Log.updateMany({}, { $set: { isRead: false } }, { multi: true });
   const projectLog = await Log.find({
